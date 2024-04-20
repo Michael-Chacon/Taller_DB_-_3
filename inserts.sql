@@ -172,7 +172,36 @@
 -- empleado
 {
 -- oficina madrid
-    git 
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('María', 'García', 'López', '54321', 'maria.garcia@empresa.com', NULL, NULL, 1);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('git sJuan', 'Pérez', 'Gómez', '12345', 'juan.perez@empresa.com', 1, 1, 6);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Pedro', 'Romero', 'Sánchez', '67890', 'pedro.romero@empresa.com', 2, 1, 5);
+    
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Ana', 'Martínez', 'Fernández', '98765', 'ana.martinez@empresa.com', 2, 1, 5);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('José', 'Cala', 'Marin', '98765', 'jose.martinez@empresa.com', 2, 1, 5);
+
+    -- oficina de fuenlabrada
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Edwind', 'Hernandez', NULL, '45321', 'Edwing@empresa.com', NULL, NULL, 1);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Laura ', 'González', NULL, '12345', 'j.perez@ejemplo.com', 6, 2, 6);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Sofía', 'Pérez', NULL, '67890', 'p.romero@ejemplo.com', 7, 2, 5);
+    
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Diego', 'MarRamíreztínez', NULL, '98765', 'a.martinez@ejemplo.com', 7, 2, 5);
+
+    INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
+    VALUES ('Andrea', 'García', NULL, '98765', 'j.cala@ejemplo.com', 7, 2, 5);
 
 }
 
