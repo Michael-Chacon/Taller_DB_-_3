@@ -176,7 +176,7 @@
     VALUES ('María', 'García', 'López', '54321', 'maria.garcia@empresa.com', NULL, NULL, 1);
 
     INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
-    VALUES ('git sJuan', 'Pérez', 'Gómez', '12345', 'juan.perez@empresa.com', 1, 1, 6);
+    VALUES ('Juan', 'Pérez', 'Gómez', '12345', 'juan.perez@empresa.com', 1, 1, 6);
 
     INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
     VALUES ('Pedro', 'Romero', 'Sánchez', '67890', 'pedro.romero@empresa.com', 2, 1, 5);
@@ -202,14 +202,41 @@
 
     INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
     VALUES ('Andrea', 'García', NULL, '98765', 'j.cala@ejemplo.com', 7, 2, 5);
-
 }
 
-Laura Hernández González
-Carlos López Rodríguez
-Sofía Pérez Martínez
-Diego Ramírez López
-Andrea García Fernández
+-- cliente
+{
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Roberto Martínez', 5000.00, 1, 10, 3);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Alejandra López', 8000.00, 1, 4, 4);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Fernando Sánchez', 10000.00, 1, 3, 4);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Isabel Gutiérrez', 6000.00, 2, 9, 10);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Gabriel Rodríguez', 7000.00, 2, 5, 8);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Verónica Pérez', 9000.00, 2, 2, 8);
+    -- empleado null
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Marina Fernández', 7500.00, 4, 7, NULL);
+
+    INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
+    VALUES ('Andrés Ramírez', 8500.00, 4, 6, NULL);
+}
+
+
+
+SELECT *  
+FROM ciudad AS c, direccion As d
+WHERE c.id_ciudad = d.codigo_ciudad_d AND c.id_ciudad = 4;
+
 
 SELECT  p.nombre AS 'pais', r.linea_direccion1,  c.nombre AS 'ciu'
 FROM proveedor As p, direccion AS r, ciudad as c
