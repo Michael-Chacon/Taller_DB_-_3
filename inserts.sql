@@ -250,6 +250,71 @@
     VALUES (4123456789, 4, NULL, 2, 2, NULL);
 }
 
+-- pago
+{
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2024-04-01', 150.00, 1, 1);
+
+    -- Registro 2
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2024-04-02', 200.00, 1, 2);
+
+    -- Registro 3
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2024-04-03', 300.00, 1, 3);
+
+    -- Registro 4
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2024-04-04', 250.00, 2, 1);
+
+    -- Registro 5
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2024-04-05', 180.00, 2, 3);
+}
+
+-- pedido
+{
+    -- Registro 1
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-01', '2024-04-05', NULL, 'Pedido urgente', 1, 1);
+
+    -- Registro 2
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-02', '2024-04-06', NULL, NULL, 1, 1);
+
+    -- Registro 3
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-03', '2024-04-07', NULL, 'Pedido regular', 1, 2);
+
+    -- Registro 4
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-04', '2024-04-08', NULL, NULL, 1, 3);
+
+    -- Registro 5
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-05', '2024-04-09', NULL, 'Pedido especial', 3, 1);
+
+    -- Registro 6
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-06', '2024-04-10', NULL, NULL, 3, 1);
+
+    -- Registro 7
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-07', '2024-04-11', NULL, 'Pedido urgente', 3, 2);
+
+    -- Registro 8
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-08', '2024-04-12', NULL, NULL, 3, 3);
+
+    -- Registro 9
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-09', '2024-04-13', NULL, 'Pedido regular', 2, 1);
+
+    -- Registro 10
+    INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
+    VALUES ('2024-04-10', '2024-04-14', NULL, NULL, 2, 2);
+}
+
 
 SELECT *  
 FROM ciudad AS c, direccion As d
