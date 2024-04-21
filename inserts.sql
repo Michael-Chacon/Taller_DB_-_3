@@ -230,6 +230,7 @@
     INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
     VALUES ('Andrés Ramírez', 8500.00, 4, 6, NULL);
 }
+
 -- contacto
 {
     INSERT INTO contacto (id_contacto, nombre_contacto, apellido_contacto, email_contacto, codigo_cliente_co) VALUES 
@@ -237,6 +238,17 @@
     (NULL, 'Alejandra', 'López', 'alejandraL@gmail.com', 2);
 }
 
+-- telefono
+{
+    INSERT INTO telefono (numero, prefijo, codigo_cliente_te, codigo_tipo_telefono, codigo_oficina_te, codigo_proveedor_te)
+    VALUES (3123456789, 31, NULL, 1, 1, NULL);
+
+    INSERT INTO telefono (numero, prefijo, codigo_cliente_te, codigo_tipo_telefono, codigo_oficina_te, codigo_proveedor_te)
+    VALUES (5712345678, 57, NULL, 2, 1, NULL);
+
+    INSERT INTO telefono (numero, prefijo, codigo_cliente_te, codigo_tipo_telefono, codigo_oficina_te, codigo_proveedor_te)
+    VALUES (4123456789, 4, NULL, 2, 2, NULL);
+}
 
 
 SELECT *  
