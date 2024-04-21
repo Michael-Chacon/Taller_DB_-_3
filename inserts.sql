@@ -315,6 +315,121 @@
     VALUES ('2024-04-10', '2024-04-14', NULL, NULL, 2, 2);
 }
 
+-- productos
+{
+    -- Productos de la gama Herbáceas3
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Planta de Lavanda', 10, 5.99, 3.50, 'Planta de lavanda aromática.', 1, 1);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Planta de Menta', 25, 4.49, 2.75, 'Planta de menta fresca para infusiones.', 1, 1);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Hierba de Limón', 18, 3.99, 2.25, 'Hierba de limón para uso culinario y aromático.', 1, 1);
+
+    (1, 3, 2, 5.99, 2), (2, 3, 2, 4.49, 2), (3, 3, 2, 3.99, 2)
+
+    -- Productos de la gama Herramientas3
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Set de Herramientas de Jardinería', 20, 39.99, 25.00, 'Incluye pala, rastrillo y tijeras de podar.', 2, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Cortadora de Césped', 5, 149.99, 100.00, 'Cortadora de césped eléctrica con motor de 1500W.', 2, 1);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Set de Riego Automático', 8, 29.99, 20.00, 'Incluye temporizador y manguera para riego automático.', 2, 1);
+    (4, 4, 1, 39.99, 2), (5, 4, 1, 149.99, 2), (6, 4, 1, 29.99, 2)
+
+    -- Productos de la gama Aromáticas3
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Incienso de Sándalo', 50, 2.99, 1.50, 'Incienso de sándalo para aromaterapia.', 3, 1);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Vela de Lavanda', 25, 2.99, 2.50, 'Vela aromática de lavanda para relajación.', 3, 1);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Aceite Esencial de Eucalipto', 40, 9.99, 6.00, 'Aceite esencial de eucalipto para difusores.', 3, 1);
+    (7, 5, 1, 2.99, 2), (8, 5, 1, 2.99, 2), (9, 5, 1, 9.99, 2)
+
+    -- Productos de la gama Frutales5
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Manzanas Gala', 30, 0.99, 0.50, 'Manzanas frescas de la variedad Gala.', 4, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Naranjas Valencia', 25, 1.49, 0.75, 'Naranjas frescas de la variedad Valencia.', 4, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Plátanos Canarios', 35, 0.89, 0.40, 'Plátanos frescos de las Islas Canarias.', 4, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Uvas Thompson', 40, 2.99, 1.80, 'Uvas frescas de la variedad Thompson.', 4, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Fresas Frescas', 20, 3.49, 2.00, 'Fresas maduras y jugosas.', 4, 3);
+
+
+    -- Productos de la gama Ornamentales5
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Rosa Roja', 15, 3.99, 2.00, 'Rosa roja de floración temprana.', 5, 2);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Lirio Blanco', 25, 4.49, 2.50, 'Lirio blanco de fragancia suave y delicada.', 5, 2);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Begonia Escarlata', 18, 3.79, 2.00, 'Begonia de color escarlata intenso.', 5, 3);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Girasol Gigante', 12, 5.99, 3.50, 'Girasol de variedad gigante con flores de gran tamaño.', 5, 2);
+
+    INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
+    VALUES ('Orquídea Phalaenopsis', 20, 8.99, 5.00, 'Orquídea Phalaenopsis en maceta de cerámica.', 5, 2);
+}
+
+-- detalle pedido 
+{
+    -- Detalles del pedido 1
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (10, 1, 3, 1, 1), (11, 1, 2, 1.49, 2), (12, 1, 3, 0.89, 1), (13, 1, 5, 2.99, 2);
+
+    -- Detalles del pedido 2
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (19, 2, 1, 8.99, 1), (18, 2, 2, 5.99, 2), (17, 2, 3, 3.79, 1), (16, 2, 5, 4.49, 2);
+
+    -- Detalles del pedido 3
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (1, 3, 2, 5.99, 2), (2, 3, 2, 4.49, 2), (3, 3, 2, 3.99, 2);
+
+    -- Detalles del pedido 4
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (4, 4, 1, 39.99, 2), (5, 4, 1, 149.99, 2), (6, 4, 1, 29.99, 2);
+    
+    -- Detalles del pedido 5
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (7, 5, 1, 2.99, 2), (8, 5, 1, 2.99, 2), (9, 5, 1, 9.99, 2);
+    
+    -- Detalles del pedido 6
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (1, 6, 2, 5.99, 2), (6, 6, 1, 29.99, 2), (9, 6, 1, 9.99, 2);
+    
+    -- Detalles del pedido 7
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (12, 7, 3, 0.89, 1), (13, 7, 5, 2.99, 2);
+    
+    -- Detalles del pedido 8
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (5, 8, 1, 149.99, 2), (8, 8, 1, 2.99, 2), (12, 8, 3, 0.89, 1);
+    
+    -- Detalles del pedido 9
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (3, 9, 2, 3.99, 2);
+    
+    -- Detalles del pedido 10
+    INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
+    VALUES (13, 10, 5, 2.99, 2), (19, 10, 1, 8.99, 1);
+
+}
+
+
 
 SELECT *  
 FROM ciudad AS c, direccion As d
