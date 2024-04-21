@@ -230,6 +230,12 @@
     INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
     VALUES ('Andrés Ramírez', 8500.00, 4, 6, NULL);
 }
+-- contacto
+{
+    INSERT INTO contacto (id_contacto, nombre_contacto, apellido_contacto, email_contacto, codigo_cliente_co) VALUES 
+    (NULL, 'Roberto', 'Martínez', 'roberto@gmail.com', 1),
+    (NULL, 'Alejandra', 'López', 'alejandraL@gmail.com', 2);
+}
 
 
 
