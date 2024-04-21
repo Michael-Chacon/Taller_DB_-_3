@@ -1,37 +1,33 @@
 -- gama
-{
+
         INSERT INTO gama_producto VALUES (NULL,'Herbaceas','Plantas para jardin decorativas',NULL,NULL);
         INSERT INTO gama_producto VALUES (NULL,'Herramientas','Herramientas para todo tipo de acción',NULL,NULL);
         INSERT INTO gama_producto VALUES (NULL,'Aromáticas','Plantas aromáticas',NULL,NULL);
         INSERT INTO gama_producto VALUES (NULL,'Frutales','Árboles pequeños de producción frutal',NULL,NULL);
         INSERT INTO gama_producto VALUES (NULL,'Ornamentales','Plantas vistosas para la decoración del jardín',NULL,NULL);
-}
 -- pais
-{
+
     INSERT INTO pais (nombre) VALUES ('USA');
     INSERT INTO pais (nombre) VALUES ('Spain');
     INSERT INTO pais (nombre) VALUES ('France');
     INSERT INTO pais (nombre) VALUES ('Australia');
     INSERT INTO pais (nombre) VALUES ('United Kingdom');
-}
 -- estado
-{
+
     INSERT INTO estado (nombre_estado) VALUES ('Entregado');
     INSERT INTO estado (nombre_estado) VALUES ('Rechazado');
     INSERT INTO estado (nombre_estado) VALUES ('Pendiente');
-}
 
 -- region
-{
+
     INSERT INTO region (id_region, nombre, codigo_pais) VALUES 
     (NULL, 'Comunidad Autónoma de Madrid', 2), 
     (NULL, 'Comunidad Autónoma de Cataluña', 2), (NULL, 'Floridad', 1),
     (NULL, 'Región de Île-de-France', 3), (NULL, 'Nueva Gales del Sur', 4), 
     (NULL, 'London', 5);
-}
 
 -- ciudad
-{
+
     INSERT INTO ciudad (id_ciudad, nombre, codigo_region)
     VALUES (NULL, "Madrid", 1);
 
@@ -55,15 +51,13 @@
 
     INSERT INTO ciudad (id_ciudad, nombre, codigo_region)
     VALUES (NULL, "London", 5);
-}
 -- metodo pago
-{
+
     INSERT INTO metodo_pago (nombre_metodo) VALUES ('PayPal');
     INSERT INTO metodo_pago (nombre_metodo) VALUES ('Transferencia');
     INSERT INTO metodo_pago (nombre_metodo) VALUES ('Cheque');
-}
 -- dimensiones
-{
+
     INSERT INTO dimension (alto, ancho, largo)
     VALUES (2.5, 1.8, 0.7);  -- Insert 1: Small dimensions
 
@@ -72,9 +66,8 @@
 
     INSERT INTO dimension (alto, ancho, largo)
     VALUES (10.0, 8.0, 4.0);
-}
 -- puesto
-{
+
     INSERT INTO cargo (nombre_cargo)
     VALUES ('Director General');
 
@@ -92,10 +85,9 @@
 
     INSERT INTO cargo (nombre_cargo)
     VALUES ('Director Oficina');
-}
 
 --tipo telefono
-{
+
     INSERT INTO tipo_telefono (descripcion)
     VALUES ('Móvil');
 
@@ -104,10 +96,9 @@
 
     INSERT INTO tipo_telefono (descripcion)
     VALUES ('Fax');
-}
 
 -- direccion
-{
+
     INSERT INTO direccion (linea_direccion1, linea_direccion2, codigo_ciudad_d)
     VALUES ('Calle Mayor, 123', NULL, 1);
 
@@ -137,10 +128,9 @@
 
     INSERT INTO direccion (linea_direccion1, linea_direccion2, codigo_ciudad_d)
     VALUES ('Passeig Arqueològic, 2', NULL, 1); -- Girona address
-}
 
 -- proveedores
-{
+
     INSERT INTO proveedor (nombre, codigo_direccion_p)
     VALUES ('Acme Corporation', 1);
 
@@ -152,10 +142,9 @@
 
     INSERT INTO proveedor (nombre, codigo_direccion_p)
     VALUES ('Exotic Imports', 10);
-}
 
 -- oficina
-{
+
     INSERT INTO oficina (codigo_direccion_o)
     VALUES (1);
 
@@ -167,10 +156,9 @@
 
     INSERT INTO oficina (codigo_direccion_o)
     VALUES (10);
-}
 
 -- empleado
-{
+
 -- oficina madrid
     INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
     VALUES ('María', 'García', 'López', '54321', 'maria.garcia@empresa.com', NULL, NULL, 1);
@@ -202,10 +190,9 @@
 
     INSERT INTO empleado (nombre_empleado, apellido1, apellido2, extension, email, id_jefe, codigo_oficina, codigo_cargo)
     VALUES ('Andrea', 'García', NULL, '98765', 'j.cala@ejemplo.com', 7, 2, 5);
-}
 
 -- cliente
-{
+
     INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
     VALUES ('Roberto Martínez', 5000.00, 1, 10, 3);
 
@@ -229,17 +216,15 @@
 
     INSERT INTO cliente (nombre_cliente, limite_credito, codigo_ciudad_c, codigo_direccion_c, codigo_empleado_rep_ventas)
     VALUES ('Andrés Ramírez', 8500.00, 4, 6, NULL);
-}
 
 -- contacto
-{
+
     INSERT INTO contacto (id_contacto, nombre_contacto, apellido_contacto, email_contacto, codigo_cliente_co) VALUES 
     (NULL, 'Roberto', 'Martínez', 'roberto@gmail.com', 1),
     (NULL, 'Alejandra', 'López', 'alejandraL@gmail.com', 2);
-}
 
 -- telefono
-{
+
     INSERT INTO telefono (numero, prefijo, codigo_cliente_te, codigo_tipo_telefono, codigo_oficina_te, codigo_proveedor_te)
     VALUES (3123456789, 31, NULL, 1, 1, NULL);
 
@@ -248,10 +233,9 @@
 
     INSERT INTO telefono (numero, prefijo, codigo_cliente_te, codigo_tipo_telefono, codigo_oficina_te, codigo_proveedor_te)
     VALUES (4123456789, 4, NULL, 2, 2, NULL);
-}
 
 -- pago
-{
+
     INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
     VALUES ('2024-04-01', 150.00, 1, 1);
 
@@ -270,53 +254,71 @@
     -- Registro 5
     INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
     VALUES ('2024-04-05', 180.00, 2, 3);
-}
+
+    -- 
+        INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2008-04-01', 150.00, 1, 1);
+
+    -- Registro 2
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2009-04-02', 200.00, 1, 2);
+
+    -- Registro 3
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2009-04-03', 300.00, 1, 3);
+
+    -- Registro 4
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2008-04-04', 250.00, 2, 1);
+
+    -- Registro 5
+    INSERT INTO pago (fecha_pago, total, codigo_metodo_pago, codigo_cliente_pa)
+    VALUES ('2008-04-05', 180.00, 2, 3);
 
 -- pedido
-{
+
     -- Registro 1
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-01', '2024-04-05', NULL, 'Pedido urgente', 1, 1);
+    VALUES ('2024-04-01', '2024-04-05', '2024-04-03', 'Pedido urgente', 1, 1);
 
     -- Registro 2
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-02', '2024-04-06', NULL, NULL, 1, 1);
+    VALUES ('2024-04-02', '2024-04-06', '2024-04-10', NULL, 1, 1);
 
     -- Registro 3
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-03', '2024-04-07', NULL, 'Pedido regular', 1, 2);
+    VALUES ('2024-04-03', '2024-04-07', '2024-04-05', 'Pedido regular', 1, 2);
 
     -- Registro 4
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-04', '2024-04-08', NULL, NULL, 1, 3);
+    VALUES ('2024-04-04', '2024-04-08', '2024-04-10', NULL, 1, 3);
 
     -- Registro 5
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-05', '2024-04-09', NULL, 'Pedido especial', 3, 1);
+    VALUES ('2024-04-05', '2024-04-09', '2024-04-05', 'Pedido especial', 3, 1);
 
     -- Registro 6
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-06', '2024-04-10', NULL, NULL, 3, 1);
+    VALUES ('2024-04-06', '2024-04-10', '2024-04-15', NULL, 3, 1);
 
     -- Registro 7
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-07', '2024-04-11', NULL, 'Pedido urgente', 3, 2);
+    VALUES ('2024-04-07', '2024-04-11', '2024-04-11', 'Pedido urgente', 3, 2);
 
     -- Registro 8
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-08', '2024-04-12', NULL, NULL, 3, 3);
+    VALUES ('2024-04-08', '2024-04-12', '2024-04-05', NULL, 3, 3);
 
     -- Registro 9
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-09', '2024-04-13', NULL, 'Pedido regular', 2, 1);
+    VALUES ('2024-04-09', '2024-04-13', '2024-04-04', 'Pedido regular', 2, 1);
 
     -- Registro 10
     INSERT INTO pedido (fecha_pedido, fecha_esperado, fecha_entrega, comentario, codigo_client_pedido, codigo_estado_pedido)
-    VALUES ('2024-04-10', '2024-04-14', NULL, NULL, 2, 2);
-}
+    VALUES ('2024-04-10', '2024-04-14', '2024-04-18', NULL, 2, 2);
 
 -- productos
-{
+
     -- Productos de la gama Herbáceas3
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
     VALUES ('Planta de Lavanda', 10, 5.99, 3.50, 'Planta de lavanda aromática.', 1, 1);
@@ -327,7 +329,7 @@
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
     VALUES ('Hierba de Limón', 18, 3.99, 2.25, 'Hierba de limón para uso culinario y aromático.', 1, 1);
 
-    (1, 3, 2, 5.99, 2), (2, 3, 2, 4.49, 2), (3, 3, 2, 3.99, 2)
+   
 
     -- Productos de la gama Herramientas3
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
@@ -338,7 +340,6 @@
 
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
     VALUES ('Set de Riego Automático', 8, 29.99, 20.00, 'Incluye temporizador y manguera para riego automático.', 2, 1);
-    (4, 4, 1, 39.99, 2), (5, 4, 1, 149.99, 2), (6, 4, 1, 29.99, 2)
 
     -- Productos de la gama Aromáticas3
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
@@ -349,7 +350,6 @@
 
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
     VALUES ('Aceite Esencial de Eucalipto', 40, 9.99, 6.00, 'Aceite esencial de eucalipto para difusores.', 3, 1);
-    (7, 5, 1, 2.99, 2), (8, 5, 1, 2.99, 2), (9, 5, 1, 9.99, 2)
 
     -- Productos de la gama Frutales5
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
@@ -383,10 +383,12 @@
 
     INSERT INTO producto (nombre, cantidad_stock, precio_venta, precio_proveedor, descripcion_producto, codigo_gama, codigo_dimension)
     VALUES ('Orquídea Phalaenopsis', 20, 8.99, 5.00, 'Orquídea Phalaenopsis en maceta de cerámica.', 5, 2);
-}
+--     (4, 4, 1, 39.99, 2), (5, 4, 1, 149.99, 2), (6, 4, 1, 29.99, 2)
+--  (1, 3, 2, 5.99, 2), (2, 3, 2, 4.49, 2), (3, 3, 2, 3.99, 2), 
+--     (7, 5, 1, 2.99, 2), (8, 5, 1, 2.99, 2), (9, 5, 1, 9.99, 2)
 
 -- detalle pedido 
-{
+
     -- Detalles del pedido 1
     INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
     VALUES (10, 1, 3, 1, 1), (11, 1, 2, 1.49, 2), (12, 1, 3, 0.89, 1), (13, 1, 5, 2.99, 2);
@@ -427,7 +429,6 @@
     INSERT INTO detalle_pedido (id_producto_pedido, id_pedido_producto, cantidad, precio_unidad, numero_linea)
     VALUES (13, 10, 5, 2.99, 2), (19, 10, 1, 8.99, 1);
 
-}
 
 
 

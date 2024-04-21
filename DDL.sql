@@ -1,7 +1,6 @@
 CREATE DATABASE gardening;
 USE gardening;
 
-
 CREATE TABLE gama_producto(
     id_gama INT AUTO_INCREMENT NOT NULL,
     nombre VARCHAR(50) NOT NULL,
