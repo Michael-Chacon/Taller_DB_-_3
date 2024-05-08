@@ -98,7 +98,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
    ```
 
 3. Devuelve un listado con el nombre, apellidos y email de los empleados cuyo
-  jefe tiene un código de jefe igual a 2.
+    jefe tiene un código de jefe igual a 2.
 
   ```sql
   SELECT nombre_empleado, apellido1, apellido2, email
@@ -114,7 +114,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
   ```
 
 4. Devuelve el nombre del puesto, nombre, apellidos y email del jefe de la
-  empresa.
+    empresa.
 
   ```sql
   SELECT c.nombre_cargo, e.nombre_empleado, e.apellido1, e.apellido2, e.email
@@ -128,7 +128,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
   ```
 
 5. Devuelve un listado con el nombre, apellidos y puesto de aquellos
-  empleados que no sean representantes de ventas.
+    empleados que no sean representantes de ventas.
 
   ```sql
   SELECT c.nombre_cargo, e.nombre_empleado, e.apellido1, e.apellido2
@@ -168,7 +168,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
    ```
 
 7. Devuelve un listado con los distintos estados por los que puede pasar un
-  pedido.
+    pedido.
 
   ```sql
   SELECT nombre_estado
@@ -183,11 +183,11 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
   ```
 
 8. Devuelve un listado con el código de cliente de aquellos clientes que
-  realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
-  aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
-  • Utilizando la función YEAR de MySQL.
-  • Utilizando la función DATE_FORMAT de MySQL.
-  • Sin utilizar ninguna de las funciones anteriores.
+    realizaron algún pago en 2008. Tenga en cuenta que deberá eliminar
+    aquellos códigos de cliente que aparezcan repetidos. Resuelva la consulta:
+    • Utilizando la función YEAR de MySQL.
+    • Utilizando la función DATE_FORMAT de MySQL.
+    • Sin utilizar ninguna de las funciones anteriores.
 
   ```SQL 
   SELECT DISTINCT c.id_cliente AS 'cliente' 
@@ -210,8 +210,8 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
   ```
 
 9. Devuelve un listado con el código de pedido, código de cliente, fecha
-  esperada y fecha de entrega de los pedidos que no han sido entregados a
-  tiempo.
+    esperada y fecha de entrega de los pedidos que no han sido entregados a
+    tiempo.
 
   ```sql
   SELECT p.id_pedido, c.id_cliente, p.fecha_esperado, p.fecha_entrega 
@@ -353,7 +353,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
 sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 
 1. Obtén un listado con el nombre de cada cliente y el nombre y apellido de su
-  representante de ventas.
+    representante de ventas.
 
   ```sql
   SELECT c.nombre_cliente, e.nombre_empleado, e.apellido1
@@ -374,7 +374,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 2. Muestra el nombre de los clientes que hayan realizado pagos junto con el
-  nombre de sus representantes de ventas.
+    nombre de sus representantes de ventas.
 
   ```sql
   SELECT DISTINCT c.id_cliente, c.nombre_cliente, e.nombre_empleado
@@ -393,7 +393,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 3. Muestra el nombre de los clientes que no hayan realizado pagos junto con
-  el nombre de sus representantes de ventas.
+    el nombre de sus representantes de ventas.
 
   ```sql
   SELECT c.id_cliente, c.nombre_cliente, e.nombre_empleado
@@ -415,8 +415,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 4. Devuelve el nombre de los clientes que han hecho pagos y el nombre de sus
-  representantes junto con la ciudad de la oficina a la que pertenece el
-  representante.
+    representantes junto con la ciudad de la oficina a la que pertenece el
+    representante.
 
   ```sql
   SELECT DISTINCT c.nombre_cliente, e.nombre_empleado, ci.nombre
@@ -438,8 +438,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 5. Devuelve el nombre de los clientes que no hayan hecho pagos y el nombre
-  de sus representantes junto con la ciudad de la oficina a la que pertenece el
-  representante.
+    de sus representantes junto con la ciudad de la oficina a la que pertenece el
+    representante.
 
   ```sql
   SELECT DISTINCT c.nombre_cliente, e.nombre_empleado, ci.nombre
@@ -479,7 +479,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    ```
 
 7. Devuelve el nombre de los clientes y el nombre de sus representantes junto
-  con la ciudad de la oficina a la que pertenece el representante.
+    con la ciudad de la oficina a la que pertenece el representante.
 
   ```sql
   SELECT c.nombre_cliente, e.nombre_empleado, ci.nombre
@@ -503,7 +503,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 8. Devuelve un listado con el nombre de los empleados junto con el nombre
-  de sus jefes.
+    de sus jefes.
 
   ```sql
   SELECT
@@ -530,7 +530,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 9. Devuelve un listado que muestre el nombre de cada empleados, el nombre
-  de su jefe y el nombre del jefe de sus jefe.
+    de su jefe y el nombre del jefe de sus jefe.
 
   ```sql
   SELECT 
@@ -627,7 +627,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 ###### LEFT JOIN y NATURAL RIGHT JOIN.
 
 1. Devuelve un listado que muestre solamente los clientes que no han
-  realizado ningún pago.
+    realizado ningún pago.
 
   ```sql
   SELECT c.nombre_cliente AS Nombre_Cliente
@@ -648,7 +648,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 2. Devuelve un listado que muestre solamente los clientes que no han
-  realizado ningún pedido.
+    realizado ningún pedido.
 
   ```sql
   SELECT c.nombre_cliente AS Nombre_Cliente
@@ -669,7 +669,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 3. Devuelve un listado que muestre los clientes que no han realizado ningún
-  pago y los que no han realizado ningún pedido.
+    pago y los que no han realizado ningún pedido.
 
   ```sql
   SELECT 
@@ -704,7 +704,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 4. Devuelve un listado que muestre solamente los empleados que no tienen
-  una oficina asociada.
+    una oficina asociada.
 
   ```
   SELECT e.nombre_empleado AS Nombre_Empleado
@@ -721,7 +721,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 5. Devuelve un listado que muestre solamente los empleados que no tienen un
-  cliente asociado.
+    cliente asociado.
 
   ```sql
   SELECT e.nombre_empleado AS Nombre_Empleado
@@ -746,7 +746,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 6. Devuelve un listado que muestre solamente los empleados que no tienen un
-  cliente asociado junto con los datos de la oficina donde trabajan.
+    cliente asociado junto con los datos de la oficina donde trabajan.
 
   ```sql
   SELECT 
@@ -771,7 +771,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 7. Devuelve un listado que muestre los empleados que no tienen una oficina
-  asociada y los que no tienen un cliente asociado.
+    asociada y los que no tienen un cliente asociado.
 
   ```sql
   SELECT 
@@ -807,7 +807,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 8. Devuelve un listado de los productos que nunca han aparecido en un
-  pedido.
+    pedido.
 
   ```sql
   SELECT 
@@ -827,8 +827,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 9. Devuelve un listado de los productos que nunca han aparecido en un
-  pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
-  producto.
+    pedido. El resultado debe mostrar el nombre, la descripción y la imagen del
+    producto.
 
   ```sql
   SELECT 
@@ -965,7 +965,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 4. ¿Cuántos pedidos hay en cada estado? Ordena el resultado de forma
-  descendente por el número de pedidos.
+    descendente por el número de pedidos.
 
   ```sql
   
@@ -986,7 +986,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 5. Calcula el precio de venta del producto más caro y más barato en una
-  misma consulta.
+    misma consulta.
 
   ```sql
   SELECT 
@@ -1033,7 +1033,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
    
 
 8. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
-  por M?
+    por M?
 
   ```
   SELECT ci.nombre AS ciudad, COUNT(id_ciudad) AS total_clientes
@@ -1051,7 +1051,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   
 
 9. Devuelve el nombre de los representantes de ventas y el número de clientes
-  al que atiende cada uno.
+    al que atiende cada uno.
 
   ```sql
   SELECT e.nombre_empleado AS representante_ventas, COUNT(c.id_cliente) AS numero_clientes
@@ -1319,13 +1319,495 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     +------+--------------+
     ```
 
+    ## Subconsultas 
     
+    #### Con operadores básicos de comparación 
+    
+    1. Devuelve el nombre del cliente con mayor límite de crédito.
+    
+       ```sql
+       SELECT nombre_cliente
+       FROM cliente
+       WHERE limite_credito = (
+           SELECT MAX(limite_credito)
+           FROM cliente
+       );
+       +------------------+
+       | nombre_cliente   |
+       +------------------+
+       | Fernando Sánchez |
+       +------------------+
+       ```
+    
+       
+    
+    2. Devuelve el nombre del producto que tenga el precio de venta más caro.
+    
+       ```sql
+       SELECT nombre
+       FROM producto
+       WHERE precio_venta = (
+           SELECT MAX(precio_venta)
+           FROM producto
+       );
+       +---------------------+
+       | nombre              |
+       +---------------------+
+       | Cortadora de Césped |
+       +---------------------+
+       ```
+    
+       
+    
+    3. Devuelve el nombre del producto del que se han vendido más unidades.
+      (Tenga en cuenta que tendrá que calcular cuál es el número total de
+      unidades que se han vendido de cada producto a partir de los datos de la
+      tabla detalle_pedido)
+    
+      ```sql
+      SELECT nombre 
+      FROM producto 
+      WHERE id_producto = (
+          SELECT id_producto_pedido
+          FROM detalle_pedido
+          GROUP BY id_producto_pedido
+          ORDER by SUM(cantidad) DESC
+          LIMIT 1
+      );
+      +---------------+
+      | nombre        |
+      +---------------+
+      | Uvas Thompson |
+      +---------------+
+      ```
+    
+      
+    
+    4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya
+      realizado. (Sin utilizar INNER JOIN).
+    
+      ```sql
+      SELECT c.nombre_cliente
+      FROM cliente AS c
+      WHERE c.id_cliente IN (
+          SELECT c.id_cliente
+          FROM pago AS p
+          GROUP BY c.id_cliente
+          HAVING c.limite_credito > SUM(p.total) 
+      );
+      
+      +-------------------+
+      | nombre_cliente    |
+      +-------------------+
+      | Roberto Martínez  |
+      | Alejandra López   |
+      | Fernando Sánchez  |
+      | Isabel Gutiérrez  |
+      | Gabriel Rodríguez |
+      | Verónica Pérez    |
+      | Marina Fernández  |
+      | Andrés Ramírez    |
+      +-------------------+
+      ```
+    
+      
+    
+    5. Devuelve el producto que más unidades tiene en stock.
+    
+       ```sql
+       SELECT id_producto, nombre, cantidad_stock, precio_venta
+       FROM producto
+       WHERE cantidad_stock = (
+           SELECT MAX(cantidad_stock)
+           FROM producto
+           LIMIT 1
+       );
+       +-------------+---------------------+----------------+--------------+
+       | id_producto | nombre              | cantidad_stock | precio_venta |
+       +-------------+---------------------+----------------+--------------+
+       |           7 | Incienso de Sándalo |             50 |         2.99 |
+       +-------------+---------------------+----------------+--------------+
+       ```
+    
+       
+    
+    6. Devuelve el producto que menos unidades tiene en stock.
+    
+       ```sql
+       SELECT id_producto, nombre, cantidad_stock, precio_venta
+       FROM producto
+       WHERE cantidad_stock = (
+           SELECT MIN(cantidad_stock)
+           FROM producto
+           LIMIT 1
+       );
+       +-------------+---------------------+----------------+--------------+
+       | id_producto | nombre              | cantidad_stock | precio_venta |
+       +-------------+---------------------+----------------+--------------+
+       |           5 | Cortadora de Césped |              5 |       149.99 |
+       +-------------+---------------------+----------------+--------------+
+       ```
+    
+       
+    
+    7. Devuelve el nombre, los apellidos y el email de los empleados que están a
+      cargo de Juan Pérez.
+    
+      ```sql
+      SELECT nombre_empleado, CONCAT_WS(' ', apellido1, apellido2) AS 'apellidos', email
+      FROM empleado
+      WHERE id_empleado IN (
+          SELECT id_empleado
+          FROM empleado 
+          WHERE id_jefe = (
+              SELECT id_empleado
+              FROM empleado
+              WHERE nombre_empleado = 'Juan' AND apellido1 = 'Pérez'
+          )
+      );
+      +-----------------+--------------------+---------------------------+
+      | nombre_empleado | apellidos          | email                     |
+      +-----------------+--------------------+---------------------------+
+      | Pedro           | Romero Sánchez     | pedro.romero@empresa.com  |
+      | Ana             | Martínez Fernández | ana.martinez@empresa.com  |
+      | José            | Cala Marin         | jose.martinez@empresa.com |
+      +-----------------+--------------------+---------------------------+
+      ```
+    
+      
+    
+      ### Subconsultas con ALL y ANY
+    
+    8. Devuelve el nombre del cliente con mayor límite de crédito.
+    
+       ```sql
+       SELECT nombre_cliente
+       FROM cliente
+       WHERE limite_credito >= ALL (
+           SELECT limite_credito
+           FROM cliente
+       );
+       +------------------+
+       | nombre_cliente   |
+       +------------------+
+       | Fernando Sánchez |
+       +------------------+
+       ```
+    
+       
+    
+    9. Devuelve el nombre del producto que tenga el precio de venta más caro.
+    
+       ```sql
+       SELECT nombre
+       FROM producto 
+       WHERE precio_venta >= ALL(
+           SELECT precio_venta 
+           FROM producto
+       );
+       +---------------------+
+       | nombre              |
+       +---------------------+
+       | Cortadora de Césped |
+       +---------------------+
+       ```
+    
+       
+    
+    10. Devuelve el producto que menos unidades tiene en stock.
+    
+        ```sql
+        SELECT nombre
+        FROM producto 
+        WHERE cantidad_stock <= ALL(
+            SELECT cantidad_stock
+            FROM producto
+        );
+        +---------------------+
+        | nombre              |
+        +---------------------+
+        | Cortadora de Césped |
+        +---------------------+
+        ```
+    
+        
+    
+        ### Subconsultas con IN y NOT IN
+    
+    11. Devuelve el nombre, apellido1 y cargo de los empleados que no
+        representen a ningún cliente.
+    
+        ```sql
+        SELECT e.nombre_empleado, e.apellido1
+        FROM empleado AS e
+        WHERE e.id_empleado NOT IN(
+            SELECT c.codigo_empleado_rep_ventas
+            FROM cliente AS c
+            WHERE c.codigo_empleado_rep_ventas = e.id_empleado
+        );
+        +-----------------+-----------------+
+        | nombre_empleado | apellido1       |
+        +-----------------+-----------------+
+        | María           | García          |
+        | Juan            | Pérez           |
+        | José            | Cala            |
+        | Edwind          | Hernandez       |
+        | Laura           | González        |
+        | Diego           | MarRamíreztínez |
+        +-----------------+-----------------+
+        ```
+    
+        
+    
+    12. Devuelve un listado que muestre solamente los clientes que no han
+        realizado ningún pago.
+    
+        ```sql
+        SELECT c.id_cliente, c.nombre_cliente, c.limite_credito
+        FROM cliente AS c
+        WHERE c.id_cliente NOT IN (
+            SELECT p.codigo_cliente_pa
+            FROM pago AS p
+            WHERE p.codigo_cliente_pa = c.id_cliente
+        );
+        +------------+-------------------+----------------+
+        | id_cliente | nombre_cliente    | limite_credito |
+        +------------+-------------------+----------------+
+        |          4 | Isabel Gutiérrez  |           6000 |
+        |          5 | Gabriel Rodríguez |           7000 |
+        |          6 | Verónica Pérez    |           9000 |
+        |          7 | Marina Fernández  |           7500 |
+        |          8 | Andrés Ramírez    |           8500 |
+        +------------+-------------------+----------------+
+        ```
+    
+        
+    
+    13. Devuelve un listado que muestre solamente los clientes que sí han realizado
+        algún pago.
+    
+        ```sql
+        SELECT c.id_cliente, c.nombre_cliente, c.limite_credito
+        FROM cliente AS c
+        WHERE c.id_cliente IN (
+            SELECT p.codigo_cliente_pa
+            FROM pago AS p
+            WHERE p.codigo_cliente_pa = c.id_cliente
+        );
+        +------------+------------------+----------------+
+        | id_cliente | nombre_cliente   | limite_credito |
+        +------------+------------------+----------------+
+        |          1 | Roberto Martínez |           5000 |
+        |          2 | Alejandra López  |           8000 |
+        |          3 | Fernando Sánchez |          10000 |
+        +------------+------------------+----------------+
+        ```
+    
+        
+    
+    14. Devuelve un listado de los productos que nunca han aparecido en un
+        pedido.
+    
+        ```sql
+        SELECT p.id_producto, p.nombre, p.cantidad_stock, p.precio_venta
+        FROM producto AS p
+        WHERE p.id_producto NOT IN (
+            SELECT dp.id_producto_pedido
+            FROM detalle_pedido AS dp 
+            WHERE p.id_producto = dp.id_producto_pedido
+        );
+        +-------------+----------------+----------------+--------------+
+        | id_producto | nombre         | cantidad_stock | precio_venta |
+        +-------------+----------------+----------------+--------------+
+        |          14 | Fresas Frescas |             20 |         3.49 |
+        |          15 | Rosa Roja      |             15 |         3.99 |
+        +-------------+----------------+----------------+--------------+
+        ```
+    
+        
+    
+    15. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
+        empleados que no sean representante de ventas de ningún cliente.
+    
+        ```sql
+        SELECT e.nombre_empleado, e.apellido1, c.nombre_cargo, t.numero
+        FROM empleado AS e
+        INNER JOIN oficina AS o ON e.codigo_oficina = o.id_oficina
+        INNER JOIN telefono AS t ON t.codigo_oficina_te = o.id_oficina
+        INNER JOIN cargo AS c ON e.codigo_cargo = c.id_cargo
+        WHERE e.id_empleado NOT IN (
+            SELECT cl.codigo_empleado_rep_ventas
+            FROM cliente AS cl 
+            WHERE cl.codigo_empleado_rep_ventas = e.id_empleado
+        ) AND c.id_cargo = 5;
+        +-----------------+-----------------+----------------------+------------+
+        | nombre_empleado | apellido1       | nombre_cargo         | numero     |
+        +-----------------+-----------------+----------------------+------------+
+        | José            | Cala            | Representante Ventas | 3123456789 |
+        | José            | Cala            | Representante Ventas | 5712345678 |
+        | Diego           | MarRamíreztínez | Representante Ventas | 4123456789 |
+        +-----------------+-----------------+----------------------+------------+
+        ```
+    
+        
+    
+    16. Devuelve las oficinas donde no trabajan ninguno de los empleados que
+        hayan sido los representantes de ventas de algún cliente que haya realizado
+        la compra de algún producto de la gama Frutales.
+    
+        ```sql
+        SELECT DISTINCT o.id_oficina, ciu.nombre
+        FROM oficina o
+        INNER JOIN direccion as dir ON o.codigo_direccion_o = dir.id_direccion
+        INNER JOIN ciudad as ciu ON dir.codigo_ciudad_d = ciu.id_ciudad
+        INNER JOIN empleado AS e ON o.id_oficina = e.codigo_oficina
+        WHERE e.id_empleado NOT IN(
+            SELECT c.codigo_empleado_rep_ventas
+            FROM cliente AS c
+            INNER JOIN pedido AS p ON c.id_cliente = p.codigo_client_pedido
+            INNER JOIN detalle_pedido AS dp ON  p.id_pedido = dp.id_producto_pedido
+            INNER JOIN producto AS pr ON dp.id_producto_pedido = pr.id_producto
+            INNER JOIN gama_producto AS gp ON pr.codigo_gama = gp.id_gama
+            WHERE gp.id_gama = 4;
+        );
+        
+        +------------+-------------+
+        | id_oficina | nombre      |
+        +------------+-------------+
+        |          1 | Madrid      |
+        |          2 | Fuenlabrada |
+        +------------+-------------+
+        ```
+    
+        
+    
+    17. Devuelve un listado con los clientes que han realizado algún pedido pero no
+        han realizado ningún pago.
+    
+        ```sql
+        SELECT c.id_cliente, c.nombre_cliente, c.limite_credito
+        FROM cliente AS c 
+        WHERE c.id_cliente IN (
+            SELECT pe.codigo_client_pedido
+            FROM pedido AS pe
+            WHERE pe.codigo_client_pedido = c.id_cliente
+        ) AND c.id_cliente NOT IN (
+            SELECT p.codigo_cliente_pa
+            FROM pago AS p
+            WHERE p.codigo_cliente_pa = c.id_cliente
+        );
+        Empty set (0.04 sec)
+        TODOS LOS QUE HICIERON PEDIDOS PAGARON
+        ```
+    
+        
+    
+        #### Subconsultas con EXISTS y NOT EXISTS
+    
+    18. Devuelve un listado que muestre solamente los clientes que no han
+        realizado ningún pago.
+    
+        ```sql
+        SELECT c.id_cliente, c.nombre_cliente, c.limite_credito
+        FROM cliente AS c
+        WHERE NOT EXISTS (
+            SELECT p.codigo_cliente_pa
+            FROM pago AS p
+            WHERE c.id_cliente = p.codigo_cliente_pa
+        );
+        +------------+-------------------+----------------+
+        | id_cliente | nombre_cliente    | limite_credito |
+        +------------+-------------------+----------------+
+        |          4 | Isabel Gutiérrez  |           6000 |
+        |          5 | Gabriel Rodríguez |           7000 |
+        |          6 | Verónica Pérez    |           9000 |
+        |          7 | Marina Fernández  |           7500 |
+        |          8 | Andrés Ramírez    |           8500 |
+        +------------+-------------------+----------------+
+        ```
+    
+    19. Devuelve un listado que muestre solamente los clientes que sí han realizado
+        algún pago.
+    
+        ```sql
+        SELECT c.id_cliente, c.nombre_cliente, c.limite_credito
+        FROM cliente AS c
+        WHERE EXISTS (
+            SELECT p.codigo_cliente_pa
+            FROM pago AS p
+            WHERE c.id_cliente = p.codigo_cliente_pa
+        );
+        +------------+------------------+----------------+
+        | id_cliente | nombre_cliente   | limite_credito |
+        +------------+------------------+----------------+
+        |          1 | Roberto Martínez |           5000 |
+        |          2 | Alejandra López  |           8000 |
+        |          3 | Fernando Sánchez |          10000 |
+        +------------+------------------+----------------+
+        ```
+    
+        
+    
+    20. Devuelve un listado de los productos que nunca han aparecido en un
+        pedido.
+    
+        ```sql
+        SELECT p.id_producto, p.nombre, p.cantidad_stock, p.precio_venta
+        FROM producto AS p
+        WHERE NOT EXISTS(
+            SELECT dp.id_producto_pedido
+            FROM detalle_pedido AS dp
+            WHERE p.id_producto = dp.id_producto_pedido
+        );
+        +-------------+----------------+----------------+--------------+
+        | id_producto | nombre         | cantidad_stock | precio_venta |
+        +-------------+----------------+----------------+--------------+
+        |          14 | Fresas Frescas |             20 |         3.49 |
+        |          15 | Rosa Roja      |             15 |         3.99 |
+        +-------------+----------------+----------------+--------------+
+        ```
+    
+    21. Devuelve un listado de los productos que han aparecido en un pedido
+        alguna vez.
+    
+        ```sql
+        SELECT p.id_producto, p.nombre, p.cantidad_stock, p.precio_venta
+        FROM producto AS p
+        WHERE EXISTS(
+            SELECT dp.id_producto_pedido
+            FROM detalle_pedido AS dp
+            WHERE p.id_producto = dp.id_producto_pedido
+        );
+        +-------------+-----------------------------------+----------------+--------------+
+        | id_producto | nombre                            | cantidad_stock | precio_venta |
+        +-------------+-----------------------------------+----------------+--------------+
+        |           1 | Planta de Lavanda                 |             10 |         5.99 |
+        |           2 | Planta de Menta                   |             25 |         4.49 |
+        |           3 | Hierba de Limón                   |             18 |         3.99 |
+        |           4 | Set de Herramientas de Jardinería |             20 |        39.99 |
+        |           5 | Cortadora de Césped               |              5 |       149.99 |
+        |           6 | Set de Riego Automático           |              8 |        29.99 |
+        |           7 | Incienso de Sándalo               |             50 |         2.99 |
+        |           8 | Vela de Lavanda                   |             25 |         2.99 |
+        |           9 | Aceite Esencial de Eucalipto      |             40 |         9.99 |
+        |          10 | Manzanas Gala                     |             30 |         0.99 |
+        |          11 | Naranjas Valencia                 |             25 |         1.49 |
+        |          12 | Plátanos Canarios                 |             35 |         0.89 |
+        |          13 | Uvas Thompson                     |             40 |         2.99 |
+        |          16 | Lirio Blanco                      |             25 |         4.49 |
+        |          17 | Begonia Escarlata                 |             18 |         3.79 |
+        |          18 | Girasol Gigante                   |             12 |         5.99 |
+        |          19 | Orquídea Phalaenopsis             |             20 |         8.99 |
+        +-------------+-----------------------------------+----------------+--------------+
+        ```
+    
+        
 
 ## Consultas variadas
 
 1. Devuelve el listado de clientes indicando el nombre del cliente y cuántos
-  pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
-  han realizado ningún pedido.
+    pedidos ha realizado. Tenga en cuenta que pueden existir clientes que no
+    han realizado ningún pedido.
 
   ```sql
   SELECT 
@@ -1349,8 +1831,8 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   ```
 
 2. Devuelve un listado con los nombres de los clientes y el total pagado por
-  cada uno de ellos. Tenga en cuenta que pueden existir clientes que no han
-  realizado ningún pago.
+    cada uno de ellos. Tenga en cuenta que pueden existir clientes que no han
+    realizado ningún pago.
 
   ```sql
   SELECT 
@@ -1374,7 +1856,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   ```
 
 3. Devuelve el nombre de los clientes que hayan hecho pedidos en 2008
-  ordenados alfabéticamente de menor a mayor.
+    ordenados alfabéticamente de menor a mayor.
 
   ```sql
   SELECT 
@@ -1387,7 +1869,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
   ```
 
 4. Devuelve el nombre del cliente, el nombre y primer apellido de su
-  representante de ventas y el número de teléfono de la oficina del representante de ventas, de aquellos clientes que no hayan realizado ningún pago.
+    representante de ventas y el número de teléfono de la oficina del representante de ventas, de aquellos clientes que no hayan realizado ningún pago.
 
 ```sql
 SELECT 
@@ -1405,8 +1887,8 @@ Empty set (0.00 sec)
 
 
 5. Devuelve el listado de clientes donde aparezca el nombre del cliente, el
-  nombre y primer apellido de su representante de ventas y la ciudad donde
-  está su oficina.
+    nombre y primer apellido de su representante de ventas y la ciudad donde
+    está su oficina.
 
   ```sql
   SELECT 
@@ -1433,7 +1915,7 @@ Empty set (0.00 sec)
   
 
 6. Devuelve el nombre, apellidos, puesto y teléfono de la oficina de aquellos
-  empleados que no sean representante de ventas de ningún cliente.
+    empleados que no sean representante de ventas de ningún cliente.
 
   ```sql
   SELECT 
@@ -1459,7 +1941,7 @@ Empty set (0.00 sec)
   
 
 7. Devuelve un listado indicando todas las ciudades donde hay oficinas y el
-  número de empleados que tiene.
+    número de empleados que tiene.
 
   ```sql
   SELECT 
@@ -1479,3 +1961,6 @@ Empty set (0.00 sec)
   ```
 
   
+
+## vistas
+
