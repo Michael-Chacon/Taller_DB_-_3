@@ -171,8 +171,7 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
     pedido.
 
   ```sql
-  SELECT nombre_estado
-  FROM estado;
+  SELECT nombre_estado FROM estado;
   +---------------+
   | nombre_estado |
   +---------------+
@@ -589,18 +588,12 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     SELECT
         DISTINCT c.nombre_cliente AS Nombre_Cliente,
         gp.nombre AS Gama_Producto
-    FROM
-        cliente c
-    INNER JOIN
-        pedido p ON c.id_cliente = p.codigo_client_pedido
-    INNER JOIN
-        detalle_pedido dp ON p.id_pedido = dp.id_pedido_producto
-    INNER JOIN
-        producto pr ON dp.id_producto_pedido = pr.id_producto
-    INNER JOIN
-        gama_producto gp ON pr.codigo_gama = gp.id_gama
-    ORDER BY
-        Nombre_Cliente, Gama_Producto;
+    FROM cliente c
+    INNER JOIN pedido p ON c.id_cliente = p.codigo_client_pedido
+    INNER JOIN detalle_pedido dp ON p.id_pedido = dp.id_pedido_producto
+    INNER JOIN producto pr ON dp.id_producto_pedido = pr.id_producto
+    INNER JOIN gama_producto gp ON pr.codigo_gama = gp.id_gama
+    ORDER BY Nombre_Cliente, Gama_Producto;
     +------------------+---------------+
     | Nombre_Cliente   | Gama_Producto |
     +------------------+---------------+
@@ -617,7 +610,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     | Roberto Martínez | Ornamentales  |
     +------------------+---------------+
     ```
-
+    
     
 
 ## Consultas multitabla (Composición externa)
@@ -853,7 +846,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     hayan sido los representantes de ventas de algún cliente que haya realizado
     la compra de algún producto de la gama Frutales.
 
-    ```
+    ```sql
     SELECT DISTINCT
         o.id_oficina,
         d.linea_direccion1,
@@ -879,7 +872,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 11. Devuelve un listado con los clientes que han realizado algún pedido pero no
     han realizado ningún pago.
 
-    ```
+    ```sql
     SELECT c.id_cliente, c.nombre_cliente
     FROM cliente c
     JOIN pedido p ON c.id_cliente = p.codigo_client_pedido
@@ -1963,4 +1956,229 @@ Empty set (0.00 sec)
   
 
 ## vistas
+
+```sql
+-- 1 Devuelve el nombre de los clientes y el nombre de sus representantes junto con la ciudad de la oficina a la que pertenece el representante.
+
+CREATE VIEW clienteEmpleado AS 
+SELECT c.nombre_cliente, e.nombre_empleado, ci.nombre
+FROM cliente AS c
+INNER JOIN empleado AS e ON e.id_empleado = c.codigo_empleado_rep_ventas
+INNER JOIN oficina AS o ON o.id_oficina = e.codigo_oficina
+INNER JOIN direccion AS d ON d.id_direccion = o.codigo_direccion_o
+INNER JOIN ciudad As ci ON ci.id_ciudad = d.codigo_ciudad_d;
+
+-- 2 listado de las diferentes gamas de producto que ha comprado cada cliente
+CREATE VIEW clienteProducto AS 
+SELECT DISTINCT c.nombre_cliente AS Nombre_Cliente, gp.nombre AS Gama_Producto
+FROM cliente c
+INNER JOIN pedido p ON c.id_cliente = p.codigo_client_pedido
+INNER JOIN detalle_pedido dp ON p.id_pedido = dp.id_pedido_producto
+INNER JOIN producto pr ON dp.id_producto_pedido = pr.id_producto
+INNER JOIN gama_producto gp ON pr.codigo_gama = gp.id_gama
+ORDER BY Nombre_Cliente, Gama_Producto;
+
+-- 3 listado que muestre solamente los clientes que no han realizado ningún pedido
+CREATE VIEW clietePedido AS 
+SELECT c.nombre_cliente AS Nombre_Cliente
+FROM cliente c
+LEFT JOIN pedido p ON c.id_cliente = p.codigo_client_pedido
+WHERE p.id_pedido IS NULL;
+
+-- 4 Muestre la suma total de todos los pagos que se realizaron para cada uno de los años que aparecen en la tabla pagos.
+CREATE VIEW pagosAño AS 
+SELECT YEAR(fecha_pago) AS ano, SUM(total) AS total_pagado
+FROM pago
+GROUP BY YEAR(fecha_pago);
+
+-- 5 listado de los productos que han aparecido en un pedido alguna vez
+CREATE VIEW productoConVentas AS 
+SELECT p.id_producto, p.nombre, p.cantidad_stock, p.precio_venta
+FROM producto AS p
+WHERE EXISTS(
+    SELECT dp.id_producto_pedido
+    FROM detalle_pedido AS dp
+    WHERE p.id_producto = dp.id_producto_pedido
+);
+
+-- 6 listado de clientes indicando el nombre del cliente y cuántos pedidos ha realizado.
+CREATE VIEW pedidosXCliene AS 
+SELECT c.nombre_cliente AS nombre_cliente, COUNT(p.id_pedido) AS cantidad_pedidos
+FROM cliente c
+LEFT JOIN pedido p ON c.id_cliente = p.codigo_client_pedido
+GROUP BY c.nombre_cliente;
+
+-- 7  listado con los nombres de los clientes y el total pagado por cada uno de ellos
+CREATE VIEW  pagosXCliente AS 
+SELECT c.nombre_cliente AS nombre_cliente, COALESCE(SUM(pa.total), 0) AS total_pagado
+FROM cliente c
+LEFT JOIN pago pa ON c.id_cliente = pa.codigo_cliente_pa
+GROUP BY c.nombre_cliente;
+
+-- 8 listado de clientes donde aparezca el nombre del cliente, el nombre y primer apellido de su representante de ventas y la ciudad donde está su oficina
+CREATE VIEW clienteRepresentante AS 
+SELECT 
+    c.nombre_cliente,
+    CONCAT(e.nombre_empleado, ' ', e.apellido1) AS nombre_representante,
+    ci.nombre AS ciudad_oficina
+FROM cliente c
+JOIN empleado e ON c.codigo_empleado_rep_ventas = e.id_empleado
+JOIN oficina o ON e.codigo_oficina = o.id_oficina
+JOIN direccion d ON o.codigo_direccion_o = d.id_direccion
+JOIN ciudad ci ON d.codigo_ciudad_d = ci.id_ciudad;
+
+-- 9 listado indicando todas las ciudades donde hay oficinas y el número de empleados que tiene
+CREATE VIEW ciudadOficina AS 
+SELECT 
+    ci.nombre AS ciudad,
+    COUNT(e.id_empleado) AS numero_empleados
+FROM empleado e
+JOIN oficina o ON e.codigo_oficina = o.id_oficina
+JOIN direccion d ON o.codigo_direccion_o = d.id_direccion
+JOIN ciudad ci ON d.codigo_ciudad_d = ci.id_ciudad
+GROUP BY ci.nombre;
+
+-- 10 listado con todos los productos que pertenecen a la gama Ornamentales y que tienen más de 30 unidades en stock
+CREATE VIEW productoGrama AS 
+SELECT  p.id_producto, p.nombre, p.cantidad_stock, p.precio_venta
+FROM producto AS p
+INNER JOIN gama_producto AS g ON g.id_gama = p.codigo_gama
+WHERE g.nombre = 'Ornamentales' AND p.cantidad_stock > 15
+ORDER BY p.precio_venta DESC;
+```
+
+## Procedimientos almacenados 
+
+```sql
+-- 1 Insertar un método de pago
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insert_metodo_pago $$
+CREATE PROCEDURE insert_metodo_pago(
+    IN metodoPago VARCHAR(15)
+)
+BEGIN 
+    INSERT INTO  metodo_pago (id_metodo_pago, nombre_metodo) VALUES (NULL, metodoPago);
+END $$
+DELIMITER ;
+CALL insert_metodo_pago('Efectivo');
+
+-- 2 Insertar un cargo 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insert_cargo $$
+CREATE PROCEDURE insert_cargo(
+    IN cargo VARCHAR(40)
+)
+BEGIN 
+    INSERT INTO cargo (id_cargo, nombre_cargo) VALUES (NULL, cargo);
+END $$
+DELIMITER ;
+CALL insert_cargo('Portero');
+
+-- 3 Insertar pais
+DELIMITER $$
+DROP PROCEDURE IF EXISTS insert_pais $$
+CREATE PROCEDURE insert_pais(
+    IN nombrePais VARCHAR(30)
+)
+BEGIN 
+    INSERT INTO pais (id_pais, nombre) VALUES (NULL, nombrePais);
+END $$
+DELIMITER ;
+CALL insert_pais('Portugal');
+
+-- 4  listado con el código de oficina y la ciudad donde hay oficinas
+DELIMITER $$
+DROP PROCEDURE IF EXISTS oficina_ciudad $$
+CREATE PROCEDURE oficina_ciudad()
+BEGIN 
+    SELECT o.id_oficina, c.nombre
+    FROM oficina AS o
+    INNER JOIN direccion AS d ON d.id_direccion = o.codigo_direccion_o
+    INNER JOIN ciudad AS c ON c.id_ciudad = d.codigo_ciudad_d;
+END $$
+DELIMITER ;
+CALL oficina_ciudad();
+
+-- 5 listado con el nombre de los todos los clientes españole
+DELIMITER $$
+DROP PROCEDURE IF EXISTS clientes_españa $$
+CREATE PROCEDURE clientes_españa()
+BEGIN 
+    SELECT c.nombre_cliente
+    FROM cliente AS c 
+    INNER JOIN ciudad AS ci ON ci.id_ciudad = c.codigo_ciudad_c
+    INNER JOIN region AS r ON r.id_region = ci.codigo_region
+    INNER JOIN pais AS p ON p.id_pais = r.codigo_pais  
+    WHERE p.id_pais = 2;
+END $$
+DELIMITER ;
+CALL clientes_españa();
+
+-- 6 Listar los estados 
+DELIMITER $$
+DROP PROCEDURE IF EXISTS estado_pedido $$
+CREATE PROCEDURE estado_pedido()
+BEGIN 
+    SELECT nombre_estado FROM estado;
+END $$
+DELIMITER ;
+CALL estado_pedido();
+
+-- 7 Pagos por año
+DELIMITER $$
+DROP PROCEDURE IF EXISTS promedio_pagos_año $$
+CREATE PROCEDURE promedio_pagos_año(
+    IN año INT,
+    OUT promedio DOUBLE
+)
+BEGIN 
+    SELECT AVG(total) AS pago_medio_2009
+    FROM pago
+    WHERE YEAR(fecha_pago) = año;
+END $$
+DELIMITER ;
+CALL promedio_pagos_año(2009, @promedio);
+
+-- 8 Eliminar cargo
+DELIMITER $$
+DROP PROCEDURE IF EXISTS elimiar_cargo $$
+CREATE PROCEDURE elimiar_cargo(
+    IN id INT(11)
+)
+BEGIN 
+    DELETE FROM cargo WHERE id_cargo =  id;
+END $$
+DELIMITER ;
+CALL elimiar_cargo(7);
+
+-- 9 Actualizar nombre de los metodos de pago
+DELIMITER $$
+DROP PROCEDURE IF EXISTS actualizar_metodo_pago $$
+CREATE PROCEDURE actualizar_metodo_pago(
+    IN id INT(11),
+    IN metodoPago VARCHAR(15)
+)
+BEGIN 
+    UPDATE metodo_pago SET  nombre_metodo = metodoPago WHERE id_metodo_pago = id;
+END $$
+DELIMITER ;
+CALL actualizar_metodo_pago(4, 'Efectiva');
+
+-- 10 Consultar la dirección de x oficina que tenga clientes
+DELIMITER $$
+DROP PROCEDURE IF EXISTS direccion_oficina $$
+CREATE PROCEDURE direccion_oficina(
+    IN id_ciudad INT(11)
+)
+BEGIN 
+    SELECT DISTINCT d.linea_direccion1, d.linea_direccion2
+    FROM cliente AS c
+    INNER JOIN empleado AS e ON e.id_empleado = c.codigo_empleado_rep_ventas
+    INNER JOIN oficina AS o ON o.id_oficina = e.codigo_oficina
+    INNER JOIN direccion AS d ON d.id_direccion = o.codigo_direccion_o
+    WHERE c.codigo_ciudad_c = id_ciudad; 
+END $$
+DELIMITER ;
+CALL direccion_oficina(2);
+```
 
