@@ -239,20 +239,20 @@ Creé una tabla intermedia para la relación proveedor y producto, dicha tabla s
     ```sql
     SELECT p.id_pedido, c.id_cliente, p.fecha_esperado, p.fecha_entrega 
     FROM cliente AS c, pedido AS p
-    WHERE c.id_cliente = p.codigo_client_pedido AND p.fecha_entrega < ADDDATE(p.fecha_esperado, INTERVAL 2 DAY);
+    WHERE c.id_cliente = p.codigo_client_pedido AND p.fecha_entrega <= ADDDATE(p.fecha_esperado, -2);
     
     SELECT p.id_pedido, c.id_cliente, p.fecha_esperado, p.fecha_entrega 
     FROM cliente AS c, pedido AS p
-    WHERE c.id_cliente = p.codigo_client_pedido AND DATEDIFF(p.fecha_esperado, p.fecha_entrega) > 1;
+    WHERE c.id_cliente = p.codigo_client_pedido AND  DATEDIFF(p.fecha_esperado, p.fecha_entrega) >= 2;
     Si se puede utilizando el operador de suma + o resta -
     +-----------+------------+----------------+---------------+
     | id_pedido | id_cliente | fecha_esperado | fecha_entrega |
     +-----------+------------+----------------+---------------+
     |         1 |          1 | 2024-04-05     | 2024-04-03    |
     |         3 |          1 | 2024-04-07     | 2024-04-05    |
-    |         9 |          2 | 2024-04-13     | 2024-04-04    |
     |         5 |          3 | 2024-04-09     | 2024-04-05    |
     |         8 |          3 | 2024-04-12     | 2024-04-05    |
+    |         9 |          2 | 2024-04-13     | 2024-04-04    |
     +-----------+------------+----------------+---------------+
     
     ```
@@ -395,13 +395,11 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     el nombre de sus representantes de ventas.
 
   ```sql
-  SELECT c.id_cliente, c.nombre_cliente, e.nombre_empleado
-  FROM cliente AS c
-  INNER JOIN empleado as e ON e.id_empleado = c.codigo_empleado_rep_ventas
-  WHERE c.id_cliente NOT IN (
-      SELECT codigo_cliente_pa
-      FROM pago
-  );
+  SELECT c.nombre_cliente, e.nombre_empleado 
+  FROM cliente c 
+  LEFT JOIN pago p ON p.codigo_cliente_pa = c.id_cliente
+  INNER JOIN empleado e ON c.codigo_empleado_rep_ventas = e.id_empleado
+  WHERE p.id_pago IS NULL;
   +------------+-------------------+-----------------+
   | id_cliente | nombre_cliente    | nombre_empleado |
   +------------+-------------------+-----------------+
@@ -717,13 +715,10 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     cliente asociado.
 
   ```sql
-  SELECT e.nombre_empleado AS Nombre_Empleado
+  SELECT e.nombre_empleado
   FROM empleado e
-  WHERE e.id_empleado NOT IN(
-      SELECT codigo_empleado_rep_ventas 
-      FROM cliente 
-      WHERE codigo_empleado_rep_ventas IS NOT NULL
-  );
+  LEFT JOIN cliente c ON e.id_empleado = c.codigo_empleado_rep_ventas
+  WHERE c.id_cliente IS NULL;
   +-----------------+
   | Nombre_Empleado |
   +-----------------+
@@ -767,34 +762,27 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     asociada y los que no tienen un cliente asociado.
 
   ```sql
-  SELECT 
-      e.nombre_empleado AS Nombre_Empleado,
-      'Sin Oficina' AS Estado,
-      NULL AS ID_Oficina,
-      NULL AS Codigo_Direccion_Oficina
-  FROM empleado e
-  WHERE e.codigo_oficina IS NULL
-  UNION
-  SELECT 
-      e.nombre_empleado AS Nombre_Empleado,
-      'Con Oficina' AS Estado,
-      o.id_oficina AS ID_Oficina,
-      o.codigo_direccion_o AS Codigo_Direccion_Oficina
-  FROM empleado e
+  SELECT e.nombre_empleado, 'Sin oficina' AS oficina, '-----' As clientes
+  FROM empleado e 
   LEFT JOIN oficina o ON e.codigo_oficina = o.id_oficina
-  WHERE e.id_empleado NOT IN (SELECT codigo_empleado_rep_ventas FROM cliente WHERE codigo_empleado_rep_ventas IS NOT NULL);
-  +-----------------+-------------+------------+--------------------------+
-  | Nombre_Empleado | Estado      | ID_Oficina | Codigo_Direccion_Oficina |
-  +-----------------+-------------+------------+--------------------------+
-  | María           | Sin Oficina |       NULL |                     NULL |
-  | Edwind          | Sin Oficina |       NULL |                     NULL |
-  | María           | Con Oficina |       NULL |                     NULL |
-  | Juan            | Con Oficina |          1 |                        1 |
-  | José            | Con Oficina |          1 |                        1 |
-  | Edwind          | Con Oficina |       NULL |                     NULL |
-  | Laura           | Con Oficina |          2 |                        2 |
-  | Diego           | Con Oficina |          2 |                        2 |
-  +-----------------+-------------+------------+--------------------------+
+  WHERE o.id_oficina IS NULL 
+  UNION
+  SELECT e.nombre_empleado, '-----' AS oficina, 'sin cliente' As clientes
+  FROM empleado e 
+  LEFT JOIN cliente c ON e.id_empleado = c.codigo_empleado_rep_ventas
+  WHERE c.id_cliente IS NULL;
+  +-----------------+-------------+-------------+
+  | nombre_empleado | oficina     | clientes    |
+  +-----------------+-------------+-------------+
+  | María           | Sin oficina | -----       |
+  | Edwind          | Sin oficina | -----       |
+  | María           | -----       | sin cliente |
+  | Juan            | -----       | sin cliente |
+  | José            | -----       | sin cliente |
+  | Edwind          | -----       | sin cliente |
+  | Laura           | -----       | sin cliente |
+  | Diego           | -----       | sin cliente |
+  +-----------------+-------------+-------------+
   ```
 
   
@@ -1028,7 +1016,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
 8. ¿Calcula cuántos clientes tiene cada una de las ciudades que empiezan
     por M?
 
-  ```
+  ```sql
   SELECT ci.nombre AS ciudad, COUNT(id_ciudad) AS total_clientes
   FROM cliente c
   JOIN ciudad ci ON c.codigo_ciudad_c = ci.id_ciudad
@@ -1353,9 +1341,9 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
        
     
     3. Devuelve el nombre del producto del que se han vendido más unidades.
-      (Tenga en cuenta que tendrá que calcular cuál es el número total de
-      unidades que se han vendido de cada producto a partir de los datos de la
-      tabla detalle_pedido)
+        (Tenga en cuenta que tendrá que calcular cuál es el número total de
+        unidades que se han vendido de cada producto a partir de los datos de la
+        tabla detalle_pedido)
     
       ```sql
       SELECT nombre 
@@ -1377,7 +1365,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
       
     
     4. Los clientes cuyo límite de crédito sea mayor que los pagos que haya
-      realizado. (Sin utilizar INNER JOIN).
+        realizado. (Sin utilizar INNER JOIN).
     
       ```sql
       SELECT c.nombre_cliente
@@ -1444,7 +1432,7 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
        
     
     7. Devuelve el nombre, los apellidos y el email de los empleados que están a
-      cargo de Juan Pérez.
+        cargo de Juan Pérez.
     
       ```sql
       SELECT nombre_empleado, CONCAT_WS(' ', apellido1, apellido2) AS 'apellidos', email
@@ -1865,16 +1853,20 @@ sintaxis de SQL2 se deben resolver con INNER JOIN y NATURAL JOIN.
     representante de ventas y el número de teléfono de la oficina del representante de ventas, de aquellos clientes que no hayan realizado ningún pago.
 
 ```sql
-SELECT 
-    c.nombre_cliente,
-    CONCAT(e.nombre_empleado, ' ', e.apellido1) AS nombre_representante,
-    t.numero AS telefono_oficina_representante
-FROM cliente c
-JOIN empleado e ON c.codigo_empleado_rep_ventas = e.id_empleado
-JOIN telefono t ON e.id_empleado = t.codigo_oficina_te
+SELECT c.nombre_cliente, e.nombre_empleado, e.apellido1, t.numero
+FROM cliente c 
 LEFT JOIN pago p ON c.id_cliente = p.codigo_cliente_pa
-WHERE  p.id_pago IS NULL;
-Empty set (0.00 sec)
+INNER JOIN empleado e ON c.codigo_empleado_rep_ventas = e.id_empleado
+INNER JOIN oficina o ON e.codigo_oficina = o.id_oficina
+INNER JOIN telefono t ON o.id_oficina = t.codigo_oficina_te
+WHERE p.id_pago IS NULL;
++-------------------+-----------------+-----------+------------+
+| nombre_cliente    | nombre_empleado | apellido1 | numero     |
++-------------------+-----------------+-----------+------------+
+| Verónica Pérez    | Sofía           | Pérez     | 4123456789 |
+| Gabriel Rodríguez | Sofía           | Pérez     | 4123456789 |
+| Isabel Gutiérrez  | Andrea          | García    | 4123456789 |
++-------------------+-----------------+-----------+------------+
 ```
 
 
@@ -1911,24 +1903,23 @@ Empty set (0.00 sec)
     empleados que no sean representante de ventas de ningún cliente.
 
   ```sql
-  SELECT 
-      e.nombre_empleado,
-      e.apellido1,
-      e.apellido2,
-      c.nombre_cargo AS puesto,
-      t.numero AS telefono
+  SELECT e.nombre_empleado, e.apellido1, ca.nombre_cargo, t.numero
   FROM empleado e
-  JOIN cargo c ON e.codigo_cargo = c.id_cargo
-  JOIN telefono t ON e.id_empleado = t.codigo_oficina_te
-  LEFT JOIN cliente cl ON e.id_empleado = cl.codigo_empleado_rep_ventas
-  WHERE cl.codigo_empleado_rep_ventas IS NULL;
-  +-----------------+-----------+-----------+------------------+------------+
-  | nombre_empleado | apellido1 | apellido2 | puesto           | telefono   |
-  +-----------------+-----------+-----------+------------------+------------+
-  | María           | García    | López     | Director General | 3123456789 |
-  | María           | García    | López     | Director General | 5712345678 |
-  | Juan            | Pérez     | Gómez     | Director Oficina | 4123456789 |
-  +-----------------+-----------+-----------+------------------+------------+
+  INNER JOIN cargo ca ON e.codigo_cargo = ca.id_cargo
+  LEFT JOIN cliente c ON e.id_empleado = c.codigo_empleado_rep_ventas
+  LEFT JOIN oficina o ON e.codigo_oficina = o.id_oficina
+  INNER JOIN telefono t ON o.id_oficina = t.codigo_oficina_te
+  WHERE c.codigo_empleado_rep_ventas IS NULL;
+  +-----------------+-----------------+----------------------+------------+
+  | nombre_empleado | apellido1       | nombre_cargo         | numero     |
+  +-----------------+-----------------+----------------------+------------+
+  | Juan            | Pérez           | Director Oficina     | 3123456789 |
+  | José            | Cala            | Representante Ventas | 3123456789 |
+  | Juan            | Pérez           | Director Oficina     | 5712345678 |
+  | José            | Cala            | Representante Ventas | 5712345678 |
+  | Laura           | González        | Director Oficina     | 4123456789 |
+  | Diego           | MarRamíreztínez | Representante Ventas | 4123456789 |
+  +-----------------+-----------------+----------------------+------------+
   ```
 
   
@@ -1941,7 +1932,7 @@ Empty set (0.00 sec)
       ci.nombre AS ciudad,
       COUNT(e.id_empleado) AS numero_empleados
   FROM empleado e
-  JOIN oficina o ON e.codigo_oficina = o.id_oficina
+  RIGHT JOIN oficina o ON e.codigo_oficina = o.id_oficina
   JOIN direccion d ON o.codigo_direccion_o = d.id_direccion
   JOIN ciudad ci ON d.codigo_ciudad_d = ci.id_ciudad
   GROUP BY ci.nombre;
@@ -1950,6 +1941,7 @@ Empty set (0.00 sec)
   +-------------+------------------+
   | Madrid      |                4 |
   | Fuenlabrada |                4 |
+  | Barcelona   |                0 |
   +-------------+------------------+
   ```
 
@@ -2182,3 +2174,4 @@ DELIMITER ;
 CALL direccion_oficina(2);
 ```
 
+​	
